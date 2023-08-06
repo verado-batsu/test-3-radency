@@ -1,5 +1,6 @@
 import express, { Express, Request, Response, ErrorRequestHandler } from 'express';
 import cors from 'cors';
+import 'dotenv/config';
 
 import todosRouter from './routes/api/todos-routes';
 import archiveTodosRouter from './routes/api/archive-routes';
@@ -23,6 +24,8 @@ const errorHandler: ErrorRequestHandler = (err, _, res, next) => {
 
 app.use(errorHandler)
 
-app.listen(3000, () => {
-  console.log("Server running. Use our API on port: 3000")
+const {PORT = 3000} = process.env;
+
+app.listen(PORT, () => {
+  console.log(`Server running. Use our API on port: ${PORT}`)
 })
